@@ -1,15 +1,5 @@
 // CalculatePoint.cpp
-#include "House.h"
-#include<iostream>
-#include <vector>
-#include <limits>
-
-using namespace std;
-//최솟값과 최댓값을 저장하는 구조체
-struct MinMax {
-    float min;
-    float max;
-};
+#include "CalculatePoint.h"
 
 MinMax findMinMax(vector<House> houses, double House::* feature) {
     MinMax result{numeric_limits<float>::max(), numeric_limits<float>::min()};

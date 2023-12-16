@@ -1,15 +1,12 @@
 //
 // Created by dlgos on 2023-12-17.
 //
-#include <iostream>
-#include <vector>
-using namespace std;
-typedef int itemType;
+#include "QuickSort.h"
 
 int compare_Cnt = 0;
 int dataMove_Cnt = 0;
 
-inline void swap(vector<itemType> a, int i, int j) {
+void swap(vector<itemType> a, int i, int j) {
     itemType  t = a.at(i);
     dataMove_Cnt++;
     a.at(i) = a.at(j);

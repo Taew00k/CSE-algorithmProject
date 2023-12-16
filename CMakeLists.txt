@@ -7,6 +7,6 @@ add_executable(CSE_algorithmProject
 #        BestRoom/House.h
         BestRoom/main.cpp
         BestRoom/CalculatePoint.cpp
-#        BestRoom/quicksort.cpp
-#        BestRoom/radixsort.cpp
+        BestRoom/QuickSort.cpp
+        BestRoom/RadixSort.cpp
 )

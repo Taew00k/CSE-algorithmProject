@@ -9,6 +9,7 @@
 #include <vector>
 #include "CalculatePoint.h"
 
+
 using namespace std;
 
 int main(){
@@ -69,9 +70,11 @@ int main(){
 
             houseList.push_back(h);
 
+
             vector<House> houses = calculateScores(houseList,monthlyWeight,depositWeight,distanceWeight,sizeWeight);
+
             for (int p = 0 ; p < houses.size(); p++){
-                cout<<houses[p].distance<<endl;
+                cout<<houses[p].totalScore<<endl;
             }
 
         }
