@@ -1,4 +1,5 @@
-#define TIME_H
+#ifndef HOUSE_H
+#define HOUSE_H
 using namespace std;
 struct House {
     string roadNameAddress; //도로명 주소
@@ -9,5 +10,6 @@ struct House {
     string url;
     double totalScore;
 };
+#endif
 
 
