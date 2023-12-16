@@ -1,4 +1,3 @@
-#ifdef HOUSE_H
 #define TIME_H
 using namespace std;
 struct House {
