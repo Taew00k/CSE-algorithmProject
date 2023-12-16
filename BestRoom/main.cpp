@@ -6,7 +6,6 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -14,8 +13,6 @@ using namespace std;
 int main(){
     string line;
     ifstream file("BestRoom/houseInfo.txt"); //houseInfo 파일 열기, 없으면 생성
-    vector<string> tempS;
-    vector<double> tempD;
     vector<House> houseList;
     // 출력의 수
     int count;
@@ -38,6 +35,8 @@ int main(){
     if(file.is_open()) {
         while (getline(file, line)){
 
+            vector<string> tempS;
+            vector<double> tempD;
             istringstream ss(line);
             string field;
             int i = 0;
@@ -68,8 +67,13 @@ int main(){
             h.url = st;
 
             houseList.push_back(h);
+
+            for (int p = 0 ; p < houseList.size(); p++){
+                cout<<houseList[p].distance<<endl;
+            }
         }
-    } else{
-         cout<<"파일이 열리지 않았어요!";
+    } else {
+        cout << "파일이 열리지 않았어요!";
     }
+
 }
