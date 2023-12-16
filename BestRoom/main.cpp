@@ -74,20 +74,25 @@ int main() {
 
 
         }
+        vector<House> houses = calculateScores(houseList, monthlyWeight, depositWeight, distanceWeight, sizeWeight);
+        for (int p = 0; p < houses.size(); p++) {
+            cout << houses[p].totalScore << endl;
+        }
+        cout << "-----------------------pancake-------------------------------------------------" << endl;
+        vector<House> pancakeHouses = pancakeSort(houses);
+        for (int p = 0; p < pancakeHouses.size(); p++) {
+            cout << pancakeHouses[p].totalScore << endl;
+        }
+        cout << "------------------------quicksort------------------------------------------------" << endl;
+        quicksort(houses,0,99);
+        for (int p = 0; p < houses.size(); p++) {
+            cout << houses[p].totalScore << endl;
+        }
     } else {
         cout << "파일이 열리지 않았어요!";
     }
-    vector<House> houses = calculateScores(houseList, monthlyWeight, depositWeight, distanceWeight, sizeWeight);
-    for (int p = 0; p < houses.size(); p++) {
-        cout << houses[p].totalScore << endl;
-    }
-    cout << "------------------------------------------------------------------------" << endl;
-    vector<House> pancakeHouses = pancakeSort(houses);
-    for (int p = 0; p < pancakeHouses.size(); p++) {
-        cout << pancakeHouses[p].totalScore << endl;
-    }
-    cout << "------------------------------------------------------------------------" << endl;
-    vector<House> quickHouses = quicksort(houses,0,100);
+
+
 //    for (int p = 0; p < quickHouses.size(); p++) {
 //        cout << quickHouses[p].totalScore << endl;
 //    }

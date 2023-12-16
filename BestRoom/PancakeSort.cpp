@@ -4,7 +4,7 @@
 int compare_Cnt_pan = 0;
 int move_Cnt_pan = 0;
 
-void flip(vector<House> arr, int i) {
+void flip(vector<House>& arr, int i) {
     int start = 0;
     while (start < i) {
         move_Cnt_pan = move_Cnt_pan + 3;
@@ -15,7 +15,7 @@ void flip(vector<House> arr, int i) {
 }
 
 // 가장 큰 요소를 배열의 맨 끝으로 이동시키는 함수
-int findMaxIndex(vector<House> arr, int n) {
+int findMaxIndex(vector<House>& arr, int n) {
     int maxIdx = 0;
     for (int i = 0; i < n; i++) {
         if (arr[i].totalScore > arr[maxIdx].totalScore && compare_Cnt_pan++) {
@@ -26,7 +26,7 @@ int findMaxIndex(vector<House> arr, int n) {
 }
 
 // 팬케이크 정렬 함수
-vector<House> pancakeSort(vector<House> arr) {
+vector<House> pancakeSort(vector<House>& arr) {
     int n = arr.size();
     for (int currSize = n; currSize > 1; currSize--) {
         int maxIndex = findMaxIndex(arr, currSize);

@@ -6,7 +6,7 @@
 int compare_Cnt = 0;
 int dataMove_Cnt = 0;
 
-void swap(vector<itemType> a, int i, int j) {
+void swap(vector<itemType> &a, int i, int j) {
     itemType t = a[i];
     dataMove_Cnt++;
     a[i] = a[j];
@@ -15,7 +15,7 @@ void swap(vector<itemType> a, int i, int j) {
     dataMove_Cnt++;
 }
 
-int partition(vector<itemType> a, int l, int r) {
+int partition(vector<itemType>& a, int l, int r) {
     int i, j; double v;
     if (r > l) {
         v = a.at(l).totalScore;
@@ -33,12 +33,11 @@ int partition(vector<itemType> a, int l, int r) {
     return j;
 }
 
-vector<House> quicksort(vector<itemType> a, int l, int r) {
+void quicksort(vector<itemType>& a, int l, int r) {
     int  j;
     if (r > l) {
         j = partition(a, l, r);
         quicksort(a,l,j-1);
         quicksort(a,j+1,r);
     }
-    return a;
 }

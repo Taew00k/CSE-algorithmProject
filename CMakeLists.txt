@@ -8,6 +8,5 @@ add_executable(CSE_algorithmProject
         BestRoom/main.cpp
         BestRoom/CalculatePoint.cpp
         BestRoom/QuickSort.cpp
-        BestRoom/RadixSort.cpp
         BestRoom/PancakeSort.cpp
 )
