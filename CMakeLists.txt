@@ -6,4 +6,5 @@ set(CMAKE_CXX_STANDARD 14)
 add_executable(CSE_algorithmProject
 #        BestRoom/House.h
         BestRoom/main.cpp
+        BestRoom/quicksort.cpp
 )
