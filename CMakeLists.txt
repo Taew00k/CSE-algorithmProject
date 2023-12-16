@@ -4,4 +4,6 @@ project(CSE_algorithmProject)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(CSE_algorithmProject
-        BestRoom/House.cpp)
+        BestRoom/House.cpp
+        BestRoom/CalculatePoint.cpp
+        BestRoom/CalculatePoint.h)
