@@ -6,8 +6,8 @@ struct House {
     double deposit;      // 보증금
     double distance;    // 신공학관으로부터 거리
     double size;         // 평수
-    double floor;          // 층수
-    bool security; // 공동현관 유무, cctv
+    string url;
+    double totalScore;
 };
 
 
