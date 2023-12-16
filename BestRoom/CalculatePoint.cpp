@@ -1,8 +1,9 @@
 // CalculatePoint.cpp
 #include "CalculatePoint.h"
+using namespace std;
 
-MinMax findMinMax(std::vector<House> houses, double House::* feature) {
-    MinMax result{std::numeric_limits<float>::max(), std::numeric_limits<float>::min()};
+MinMax findMinMax(vector<House> houses, double House::* feature) {
+    MinMax result{numeric_limits<float>::max(), numeric_limits<float>::min()};
     for (const auto& house : houses) {
         if (house.*feature < result.min) result.min = house.*feature;
         if (house.*feature > result.max) result.max = house.*feature;
@@ -10,7 +11,7 @@ MinMax findMinMax(std::vector<House> houses, double House::* feature) {
     return result;
 }
 
-std::vector<House> calculateScores(std::vector<House> houses, int monthlyWeight, int depositWeight, int distanceWeight, int sizeWeight) {
+vector<House> calculateScores(vector<House> houses, int monthlyWeight, int depositWeight, int distanceWeight, int sizeWeight) {
     MinMax monthlyMM = findMinMax(houses, &House::monthly);
     MinMax depositMM = findMinMax(houses, &House::deposit);
     MinMax distanceMM = findMinMax(houses, &House::distance);
