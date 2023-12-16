@@ -8,11 +8,13 @@
 #include <string>
 #include <vector>
 #include "CalculatePoint.h"
+#include "PancakeSort.h"
+#include "QuickSort.h"
 
 
 using namespace std;
 
-int main(){
+int main() {
     string line;
     ifstream file("BestRoom/houseInfo.txt"); //houseInfo 파일 열기, 없으면 생성
     vector<House> houseList;
@@ -34,8 +36,8 @@ int main(){
     cout << "평수 : ";
     cin >> sizeWeight;
 
-    if(file.is_open()) {
-        while (getline(file, line)){
+    if (file.is_open()) {
+        while (getline(file, line)) {
 
             vector<string> tempS;
             vector<double> tempD;
@@ -48,14 +50,14 @@ int main(){
 
             while (getline(ss, field, ',')) {
                 //여기에 읽어온 값들의 데이터 타입이 다달라.
-                if(i == 0 || i == 5){
+                if (i == 0 || i == 5) {
                     tempS.push_back(field);
                     s++;
-                }else{
+                } else {
                     tempD.push_back(stod(field));
                     d++;
                 }
-                if(i >= 5){
+                if (i >= 5) {
                     st += field;
                 }
                 i++;
@@ -71,15 +73,22 @@ int main(){
             houseList.push_back(h);
 
 
-            vector<House> houses = calculateScores(houseList,monthlyWeight,depositWeight,distanceWeight,sizeWeight);
-
-            for (int p = 0 ; p < houses.size(); p++){
-                cout<<houses[p].totalScore<<endl;
-            }
-
         }
     } else {
         cout << "파일이 열리지 않았어요!";
     }
-
+    vector<House> houses = calculateScores(houseList, monthlyWeight, depositWeight, distanceWeight, sizeWeight);
+    for (int p = 0; p < houses.size(); p++) {
+        cout << houses[p].totalScore << endl;
+    }
+    cout << "------------------------------------------------------------------------" << endl;
+    vector<House> pancakeHouses = pancakeSort(houses);
+    for (int p = 0; p < pancakeHouses.size(); p++) {
+        cout << pancakeHouses[p].totalScore << endl;
+    }
+    cout << "------------------------------------------------------------------------" << endl;
+    vector<House> quickHouses = quicksort(houses,0,100);
+//    for (int p = 0; p < quickHouses.size(); p++) {
+//        cout << quickHouses[p].totalScore << endl;
+//    }
 }

@@ -7,24 +7,24 @@ int compare_Cnt = 0;
 int dataMove_Cnt = 0;
 
 void swap(vector<itemType> a, int i, int j) {
-    itemType  t = a.at(i);
+    itemType t = a[i];
     dataMove_Cnt++;
-    a.at(i) = a.at(j);
+    a[i] = a[j];
     dataMove_Cnt++;
-    a.at(j) = t;
+    a[j]= t;
     dataMove_Cnt++;
 }
 
 int partition(vector<itemType> a, int l, int r) {
-    int i, j; itemType v;
+    int i, j; double v;
     if (r > l) {
-        v = a.at(l);
+        v = a.at(l).totalScore;
         i = l;
         j = r + 1;
         // 항상 돌아간다는 뜻
         for (;;) {
-            while (++compare_Cnt && a[++i] < v);
-            while (++compare_Cnt && a[--j] > v);
+            while (++compare_Cnt && a[++i].totalScore< v);
+            while (++compare_Cnt && a[--j].totalScore > v);
             if (i >= j) break;
             swap(a, i, j);
         }
@@ -33,11 +33,12 @@ int partition(vector<itemType> a, int l, int r) {
     return j;
 }
 
-void quicksort(vector<itemType> a, int l, int r) {
+vector<House> quicksort(vector<itemType> a, int l, int r) {
     int  j;
     if (r > l) {
         j = partition(a, l, r);
-        quicksort(a, l, j - 1);
-        quicksort(a, j + 1, r);
+        quicksort(a,l,j-1);
+        quicksort(a,j+1,r);
     }
+    return a;
 }
