@@ -1,4 +1,3 @@
 # ninja log v5
-0	54	1702737860397680289	build.ninja	cf54f99e0d8cbeaa
-0	464	1702737885969979821	CMakeFiles/CSE_algorithmProject.dir/BestRoom/main.cpp.o	73d3cefa1a1d0057
-467	633	1702737886137939155	CSE_algorithmProject	3b3703ee455370ba
+0	457	1702738345961686856	CMakeFiles/CSE_algorithmProject.dir/BestRoom/main.cpp.o	73d3cefa1a1d0057
+459	489	1702738345995525509	CSE_algorithmProject	3b3703ee455370ba
