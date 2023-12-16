@@ -1,9 +1,13 @@
 #include "House.h"
 #include <vector>
 
+int compare_Cnt = 0;
+int move_Cnt = 0;
+
 void flip(vector<int> arr, int i) {
     int start = 0;
     while (start < i) {
+        move_Cnt = move_Cnt + 3;
         swap(arr[start], arr[i]);
         start++;
         i--;
@@ -14,7 +18,7 @@ void flip(vector<int> arr, int i) {
 int findMaxIndex(vector<int> arr, int n) {
     int maxIdx = 0;
     for (int i = 0; i < n; i++) {
-        if (arr[i] > arr[maxIdx]) {
+        if (arr[i] > arr[maxIdx] && compare_Cnt++) {
             maxIdx = i;
         }
     }
