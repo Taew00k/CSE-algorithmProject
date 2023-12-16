@@ -10,6 +10,7 @@
 #include "CalculatePoint.h"
 #include "PancakeSort.h"
 #include "QuickSort.h"
+#include "ShellSort.h"
 
 
 using namespace std;
@@ -85,6 +86,11 @@ int main() {
         }
         cout << "------------------------quicksort------------------------------------------------" << endl;
         quicksort(houses,0,99);
+        for (int p = 0; p < houses.size(); p++) {
+            cout << houses[p].totalScore << endl;
+        }
+        cout << "------------------------sellsort------------------------------------------------" << endl;
+        shellSort(houses,99);
         for (int p = 0; p < houses.size(); p++) {
             cout << houses[p].totalScore << endl;
         }
