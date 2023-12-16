@@ -1,6 +1,9 @@
 #ifndef HOUSE_H
 #define HOUSE_H
+#include <string>
+
 using namespace std;
+
 struct House {
     string roadNameAddress; //도로명 주소
     double monthly;     // 월세 + 관리비

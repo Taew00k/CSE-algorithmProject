@@ -1,12 +1,13 @@
 //
 // Created by 허은정 on 12/16/23.
 //
-#include<iostream>
+#include <iostream>
 #include "House.h"
 #include <fstream>
 #include <sstream>
 #include <string>
 #include <vector>
+#include "CalculatePoint.h"
 
 using namespace std;
 
@@ -17,20 +18,20 @@ int main(){
     // 출력의 수
     int count;
     // 중요도
-    int monthlyImp;
-    int depositImp;
-    int distanceImp;
-    int sizeImp;
+    int monthlyWeight;
+    int depositWeight;
+    int distanceWeight;
+    int sizeWeight;
     cout << "출력의 수 : ";
     cin >> count;
     cout << "월세 + 관리비 : ";
-    cin >> monthlyImp;
+    cin >> monthlyWeight;
     cout << "보증금 : ";
-    cin >> depositImp;
+    cin >> depositWeight;
     cout << "거리 : ";
-    cin >> distanceImp;
+    cin >> distanceWeight;
     cout << "평수 : ";
-    cin >> sizeImp;
+    cin >> sizeWeight;
 
     if(file.is_open()) {
         while (getline(file, line)){
@@ -68,9 +69,11 @@ int main(){
 
             houseList.push_back(h);
 
-            for (int p = 0 ; p < houseList.size(); p++){
-                cout<<houseList[p].distance<<endl;
+            vector<House> houses = calculateScores(houseList,monthlyWeight,depositWeight,distanceWeight,sizeWeight);
+            for (int p = 0 ; p < houses.size(); p++){
+                cout<<houses[p].distance<<endl;
             }
+
         }
     } else {
         cout << "파일이 열리지 않았어요!";

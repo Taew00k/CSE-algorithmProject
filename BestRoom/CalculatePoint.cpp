@@ -1,6 +1,15 @@
 // CalculatePoint.cpp
-#include "CalculatePoint.h"
+#include "House.h"
+#include<iostream>
+#include <vector>
+#include <limits>
+
 using namespace std;
+//최솟값과 최댓값을 저장하는 구조체
+struct MinMax {
+    float min;
+    float max;
+};
 
 MinMax findMinMax(vector<House> houses, double House::* feature) {
     MinMax result{numeric_limits<float>::max(), numeric_limits<float>::min()};
@@ -11,6 +20,7 @@ MinMax findMinMax(vector<House> houses, double House::* feature) {
     return result;
 }
 
+// 각 속성에 대한 최소값, 최대값, 가중치를 인자로 받아서 점수 계산
 vector<House> calculateScores(vector<House> houses, int monthlyWeight, int depositWeight, int distanceWeight, int sizeWeight) {
     MinMax monthlyMM = findMinMax(houses, &House::monthly);
     MinMax depositMM = findMinMax(houses, &House::deposit);
