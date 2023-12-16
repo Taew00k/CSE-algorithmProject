@@ -6,16 +6,11 @@
 using namespace std;
 typedef int itemType;
 
-int compare_Cnt = 0;
-int dataMove_Cnt = 0;
 
 inline void swap(vector<itemType> a, int i, int j) {
     itemType  t = a.at(i);
-    dataMove_Cnt++;
     a.at(i) = a.at(j);
-    dataMove_Cnt++;
     a.at(j) = t;
-    dataMove_Cnt++;
 }
 
 int partition(vector<itemType> a, int l, int r) {
@@ -26,8 +21,8 @@ int partition(vector<itemType> a, int l, int r) {
         j = r + 1;
         // 항상 돌아간다는 뜻
         for (;;) {
-            while (++compare_Cnt && a[++i] < v);
-            while (++compare_Cnt && a[--j] > v);
+            while (a[++i] < v);
+            while (a[--j] > v);
             if (i >= j) break;
             swap(a, i, j);
         }
