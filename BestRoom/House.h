@@ -1,6 +1,7 @@
-#include <iostream>
+#ifdef HOUSE_H
+#define TIME_H
 using namespace std;
-struct house {
+struct House {
     string roadNameAddress; //도로명 주소
     double monthly;     // 월세 + 관리비
     double deposit;      // 보증금
