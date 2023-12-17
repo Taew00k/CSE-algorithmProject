@@ -1,7 +1,7 @@
 // CalculatePoint.cpp
 #include "CalculatePoint.h"
 
-MinMax findMinMax(vector<House> houses, double House::* feature) {
+MinMax findMinMax(vector<House> houses, float House::* feature) {
     MinMax result{numeric_limits<float>::max(), numeric_limits<float>::min()};
     for (const auto& house : houses) {
         if (house.*feature < result.min) result.min = house.*feature;

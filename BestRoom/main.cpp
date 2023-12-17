@@ -75,24 +75,24 @@ int main() {
 
 
         }
-        vector<House> houses = calculateScores(houseList, monthlyWeight, depositWeight, distanceWeight, sizeWeight);
-        for (int p = 0; p < houses.size(); p++) {
-            cout << houses[p].totalScore << endl;
+        for (int p = 0; p < count; p++) {
+            cout << houseList[p].monthly << endl;
         }
+        vector<House> houses = calculateScores(houseList, monthlyWeight, depositWeight, distanceWeight, sizeWeight);
         cout << "-----------------------pancake-------------------------------------------------" << endl;
         vector<House> pancakeHouses = pancakeSort(houses);
-        for (int p = 0; p < pancakeHouses.size(); p++) {
+        for (int p = 0; p < count; p++) {
             cout << pancakeHouses[p].totalScore << endl;
         }
         cout << "------------------------quicksort------------------------------------------------" << endl;
         quicksort(houses,0,99);
-        for (int p = 0; p < houses.size(); p++) {
-            cout << houses[p].totalScore << endl;
+        for (int p = houses.size()-1; p > houses.size() - count; p--) {
+            cout << setprecision(7) << houses[p].monthly << endl;
         }
         cout << "------------------------sellsort------------------------------------------------" << endl;
         shellSort(houses,99);
-        for (int p = 0; p < houses.size(); p++) {
-            cout << houses[p].totalScore << endl;
+        for (int p = houses.size()-1; p > houses.size() - count; p--) {
+            cout <<setprecision(7)<<houses[p].monthly << endl;
         }
     } else {
         cout << "파일이 열리지 않았어요!";
