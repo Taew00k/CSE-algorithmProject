@@ -1,41 +1,48 @@
-//
-// Created by í—ˆì€ì • on 12/16/23.
-//
 #include <iostream>
 #include "House.h"
 #include <fstream>
 #include <sstream>
 #include <string>
 #include <vector>
+#include <iomanip>
 #include "CalculatePoint.h"
 #include "PancakeSort.h"
 #include "QuickSort.h"
 #include "ShellSort.h"
 
-
 using namespace std;
 
 int main() {
     string line;
-    ifstream file("BestRoom/houseInfo.txt"); //houseInfo íŒŒì¼ ì—´ê¸°, ì—†ìœ¼ë©´ ìƒì„±
+    ifstream file("BestRoom/houseInfo.txt"); //houseInfo ÆÄÀÏ ¿­±â, ¾øÀ¸¸é »ı¼º
     vector<House> houseList;
-    // ì¶œë ¥ì˜ ìˆ˜
+    // Ãâ·ÂÀÇ ¼ö
     int count;
-    // ì¤‘ìš”ë„
+    // Áß¿äµµ
     int monthlyWeight;
     int depositWeight;
     int distanceWeight;
     int sizeWeight;
-    cout << "ì¶œë ¥ì˜ ìˆ˜ : ";
+    cout << "--------------------------------------------------------------------------------------------\n";
+    cout << "¿øÇÏ½Ã´Â Ãâ·ÂÀÇ ¼ö¸¸Å­ ÀÔ·Â ÈÄ (¿ù¼¼+°ü¸®ºñ, º¸Áõ±İ, °Å¸®, Æò¼ö) 100Á¡À» ºĞ¹èÇÏ¿© Áß¿äµµ¸¦ Ç¥ÇöÇØÁÖ¼¼¿ä.\n";
+    cout << "ex) Ãâ·ÂÀÇ ¼ö: 5, ¿ù¼¼+°ü¸®ºñ: 60, º¸Áõ±İ: 20, °Å¸®:10, Æò¼ö:10\n";
+    cout << "--------------------------------------------------------------------------------------------\n";
+    cout << "Ãâ·ÂÀÇ ¼ö :";
     cin >> count;
-    cout << "ì›”ì„¸ + ê´€ë¦¬ë¹„ : ";
-    cin >> monthlyWeight;
-    cout << "ë³´ì¦ê¸ˆ : ";
-    cin >> depositWeight;
-    cout << "ê±°ë¦¬ : ";
-    cin >> distanceWeight;
-    cout << "í‰ìˆ˜ : ";
-    cin >> sizeWeight;
+    do {
+        cout << "¿ù¼¼ + °ü¸®ºñ :";
+        cin >> monthlyWeight;
+        cout << "º¸Áõ±İ :";
+        cin >> depositWeight;
+        cout << "°Å¸® :";
+        cin >> distanceWeight;
+        cout << "Æò¼ö :";
+        cin >> sizeWeight;
+
+        if (monthlyWeight + depositWeight + distanceWeight + sizeWeight != 100) {
+            cout << "°¡ÁßÄ¡ÀÇ ÇÕÀÌ 100ÀÌ ¾Æ´Õ´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.\n";
+        }
+    } while (monthlyWeight + depositWeight + distanceWeight + sizeWeight != 100);
 
     if (file.is_open()) {
         while (getline(file, line)) {
@@ -50,7 +57,7 @@ int main() {
             string st = "";
 
             while (getline(ss, field, ',')) {
-                //ì—¬ê¸°ì— ì½ì–´ì˜¨ ê°’ë“¤ì˜ ë°ì´í„° íƒ€ì…ì´ ë‹¤ë‹¬ë¼.
+                //¿©±â¿¡ ÀĞ¾î¿Â °ªµéÀÇ µ¥ÀÌÅÍ Å¸ÀÔÀÌ ´Ù´Ş¶ó.
                 if (i == 0 || i == 5) {
                     tempS.push_back(field);
                     s++;
@@ -75,31 +82,37 @@ int main() {
 
 
         }
-        for (int p = 0; p < count; p++) {
-            cout << houseList[p].monthly << endl;
-        }
         vector<House> houses = calculateScores(houseList, monthlyWeight, depositWeight, distanceWeight, sizeWeight);
-        cout << "-----------------------pancake-------------------------------------------------" << endl;
-        vector<House> pancakeHouses = pancakeSort(houses);
-        for (int p = 0; p < count; p++) {
-            cout << pancakeHouses[p].totalScore << endl;
-        }
-        cout << "------------------------quicksort------------------------------------------------" << endl;
+        cout << "-----------------ÃßÃµ ÀÚÃë¹æ ¼øÀ§º° Ãâ·Â--------------------\n";
+        /*
+        //quicksortÁ¤·Ä
+        cout << "-----------------quicksortÁ¤·Ä--------------------\n";
+        */
         quicksort(houses,0,99);
-        for (int p = houses.size()-1; p > houses.size() - count; p--) {
-            cout << setprecision(7) << houses[p].monthly << endl;
+        cout << fixed;
+        for (int p = 0; p < count; p++) {
+            cout << p+1 << "¼øÀ§) " << "ÁÖ¼Ò: " << houses[p].roadNameAddress << ", ¿ù¼¼+°ü¸®ºñ: " << setprecision(0) << houses[p].monthly <<"¿ø"<<", º¸Áõ±İ:"<< houses[p].deposit <<"¿ø"<< ", °Å¸®: " << setprecision(0) << houses[p].distance<<"m" << ", Æò¼ö : " << setprecision(2) << houses[p].size <<"Æò"<< endl;
+            cout << "url : " << houses[p].url << endl;
         }
-        cout << "------------------------sellsort------------------------------------------------" << endl;
-        shellSort(houses,99);
-        for (int p = houses.size()-1; p > houses.size() - count; p--) {
-            cout <<setprecision(7)<<houses[p].monthly << endl;
+        /* ÀÏ´ÜÀº °¡Àå ºü¸¥ Á¤·ÄÀÎ quicksort·Î °á°ú Ãâ·Â ³ª¸ÓÁöµµ ÁÖ¼®ÇØÁ¦ÇÏ¸é È®ÀÎ°¡´É
+        //shellSortÁ¤·Ä
+        cout << "-----------------shellsortÁ¤·Ä--------------------\n";
+        shellSort(houses,99); // houses´Â ÂüÁ¶·Î Àü´ŞµË´Ï´Ù.
+        cout << fixed;
+        for (int p = 0; p < count; p++) {
+            cout << p+1 << "¼øÀ§) " << "ÁÖ¼Ò: " << houses[p].roadNameAddress << ", ¿ù¼¼+°ü¸®ºñ: " << setprecision(0) << houses[p].monthly <<"¿ø"<<", º¸Áõ±İ:"<< houses[p].deposit <<"¿ø"<< ", °Å¸®: " << setprecision(0) << houses[p].distance<<"m" << ", Æò¼ö : " << setprecision(2) << houses[p].size <<"Æò"<< endl;
+            cout << "url : " << houses[p].url << endl;
         }
+        //pancake Á¤·Ä
+        cout << "-----------------pancakeÁ¤·Ä--------------------\n";
+        vector<House> pancakeHouses = pancakeSort(houses);
+        cout << fixed;
+        for (int p = 0; p < count; p++) {
+            cout << p+1 << "¼øÀ§) " << "ÁÖ¼Ò: " << pancakeHouses[p].roadNameAddress << ", ¿ù¼¼+°ü¸®ºñ: " << setprecision(0) << pancakeHouses[p].monthly <<"¿ø"<<", º¸Áõ±İ:"<< pancakeHouses[p].deposit <<"¿ø"<< ", °Å¸®: " << setprecision(0) << pancakeHouses[p].distance<<"m" << ", Æò¼ö : " << setprecision(2) << pancakeHouses[p].size <<"Æò"<< endl;
+            cout << "url : " << pancakeHouses[p].url << endl;
+        }
+        */
     } else {
-        cout << "íŒŒì¼ì´ ì—´ë¦¬ì§€ ì•Šì•˜ì–´ìš”!";
+        cout << "ÆÄÀÏÀÌ ¿­¸®Áö ¾Ê¾Ò¾î¿ä!";
     }
-
-
-//    for (int p = 0; p < quickHouses.size(); p++) {
-//        cout << quickHouses[p].totalScore << endl;
-//    }
 }

@@ -23,8 +23,8 @@ int partition(vector<itemType>& a, int l, int r) {
         j = r + 1;
         // 항상 돌아간다는 뜻
         for (;;) {
-            while (++compare_Cnt && a[++i].totalScore< v);
-            while (++compare_Cnt && a[--j].totalScore > v);
+            while (++compare_Cnt && a[++i].totalScore > v);
+            while (++compare_Cnt && a[--j].totalScore < v);
             if (i >= j) break;
             swap(a, i, j);
         }

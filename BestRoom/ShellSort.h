@@ -1,13 +1,10 @@
-//
-// Created by 허은정 on 12/17/23.
-//
-#include <iostream>
-#include <vector>
-#include "House.h"
+// ShellSort.h
 #ifndef CSE_ALGORITHMPROJECT_SELLSORT_H
 #define CSE_ALGORITHMPROJECT_SELLSORT_H
 
+#include <vector>
+#include "House.h"
 
-void shellSort(vector<House> a, int n);
+void shellSort(std::vector<House>& a, int n);
 
 #endif //CSE_ALGORITHMPROJECT_SELLSORT_H
