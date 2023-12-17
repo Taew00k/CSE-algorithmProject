@@ -26,6 +26,9 @@ int main() {
     int depositWeight;
     int distanceWeight;
     int sizeWeight;
+    cout << "(월세+관리비, 보증금, 거리, 평수) 100점을 분배하여 중요도를 표현해주세요.\n)";
+    cout << "ex) 월세+관리비: 60, 보증금: 20, 거리:10, 평수:10\n";
+    cout << "--------------------------------------------------------------\n";
     cout << "출력의 수 : ";
     cin >> count;
     cout << "월세 + 관리비 : ";
@@ -89,7 +92,7 @@ int main() {
         for (int p = houses.size()-1; p > houses.size() - count; p--) {
             cout << setprecision(7) << houses[p].monthly << endl;
         }
-        cout << "------------------------sellsort------------------------------------------------" << endl;
+        cout << "------------------------shellsort------------------------------------------------" << endl;
         shellSort(houses,99);
         for (int p = houses.size()-1; p > houses.size() - count; p--) {
             cout <<setprecision(7)<<houses[p].monthly << endl;
