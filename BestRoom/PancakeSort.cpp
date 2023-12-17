@@ -7,8 +7,10 @@ int move_Cnt_pan = 0;
 void flip(vector<House>& arr, int i) {
     int start = 0;
     while (start < i) {
-        move_Cnt_pan = move_Cnt_pan + 3;
-        swap(arr[start], arr[i]);
+        if (arr[start].totalScore < arr[i].totalScore) {
+            swap(arr[start], arr[i]);
+            move_Cnt_pan = move_Cnt_pan + 3;
+        }
         start++;
         i--;
     }
