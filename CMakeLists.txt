@@ -10,4 +10,5 @@ add_executable(CSE_algorithmProject
         BestRoom/QuickSort.cpp
         BestRoom/PancakeSort.cpp
         BestRoom/ShellSort.cpp
+        BestRoom/InsertionSort.cpp
 )
