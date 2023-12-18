@@ -5,9 +5,7 @@ int datamove_cnt_insertion = 0;
 
 // 내림차순 정렬 함수
 void insertionSort(vector<House>& arr, int n) {
-    int i, j;
-    House v;
-    n = n+1;
+    int i, j; House v;
 
     for (i = 2; i <= n; i++) {
         v = arr[i];

@@ -132,7 +132,7 @@ int main() {
         //앞에 더미데이터 넣어야 해서 얘만 다른 houses 사용
         vector<House> insertHouses = houses;
         House dummy;
-        dummy.totalScore = INT16_MIN; // 수정된 부분: totalScore에 값을 할당
+        dummy.totalScore = INT16_MAX; // 수정된 부분: totalScore에 값을 할당
         insertHouses.insert(insertHouses.begin(), dummy);
 
         cout << "-----------------삽입 정렬--------------------\n";
@@ -147,6 +147,9 @@ int main() {
                  << houses[p].monthly << "원" << ", 보증금:" << houses[p].deposit << "원" << ", 거리: " << setprecision(0)
                  << houses[p].distance << "m" << ", 평수 : " << setprecision(2) << houses[p].size << "평" << endl;
             cout << "url : " << houses[p].url << endl;
+        }
+        for(int q = 1; q <= 20; q++ ){
+            cout << insertHouses[q].totalScore<<endl;
         }
 //        }
 //        else {
