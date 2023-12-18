@@ -1,7 +1,4 @@
-#include <iostream>
-#include <vector>
 #include "InsertionSort.h"
-using namespace std;
 
 int compare_cnt_insertion = 0;
 int datamove_cnt_insertion = 0;
@@ -14,17 +11,17 @@ void insertionSort(vector<House>& a, int n) {
     datamove_cnt_insertion = 0;
 
     for (i = 1; i < n; i++) {
-        v = a[i].totalScore;
+        House temp = a[i]; // temp 객체에 a[i]를 저장합니다.
         datamove_cnt_insertion++;
 
         j = i;
-        while (++compare_cnt_insertion && j > 0 && a[j - 1].totalScore < v) {
+        while (++compare_cnt_insertion && j > 0 && a[j - 1].totalScore < temp.totalScore) { // temp.totalScore와 비교합니다.
             datamove_cnt_insertion++;
             a[j] = a[j - 1];
             j--;
         }
 
-        a[j].totalScore = v;
+        a[j] = temp; // temp 객체를 a[j]에 저장합니다.
         datamove_cnt_insertion++;
     }
 }
