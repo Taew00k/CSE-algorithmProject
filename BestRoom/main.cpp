@@ -16,9 +16,9 @@ using namespace std;
 
 int main() {
     string line;
-    ifstream file("BestRoom/houseInfo.txt"); //houseInfo 파일 열기, 없으면 생성
+    ifstream file("BestRoom/houseInfo4000.txt"); //houseInfo 파일 열기, 없으면 생성
     vector<House> houseList;
-    int data_num = 220; // 사용자가 설정한 범위 주변에 존재하는 자취방의 개수
+    int data_num = 100; // 사용자가 설정한 범위 주변에 존재하는 자취방의 개수
     auto insert_time = 0;
     auto quick_time = 0;
     // 출력의 수
@@ -127,67 +127,68 @@ int main() {
 */
 
 
-//        if(data_num <= 200) {
-        // Insertion 및 실행 시간 계산
-        //앞에 더미데이터 넣어야 해서 얘만 다른 houses 사용
-        vector<House> insertHouses = houses;
-        House dummy;
-        dummy.totalScore = INT16_MAX; // 수정된 부분: totalScore에 값을 할당
-        insertHouses.insert(insertHouses.begin(), dummy);
+        if (data_num <= 200) {
+            // Insertion 및 실행 시간 계산
+            //앞에 더미데이터 넣어야 해서 얘만 다른 houses 사용
+            vector<House> insertHouses = houses;
+            House dummy;
+            dummy.totalScore = INT16_MAX; // 수정된 부분: totalScore에 값을 할당
+            insertHouses.insert(insertHouses.begin(), dummy);
 
-        cout << "-----------------삽입 정렬--------------------\n";
-        auto insert_start_time = chrono::high_resolution_clock::now();
-        insertionSort(insertHouses, data_num);
-        auto insert_end_time = chrono::high_resolution_clock::now();
-        auto insert_duration = chrono::duration_cast<chrono::microseconds>(insert_end_time - insert_start_time);
-        insert_time = insert_duration.count();
-        cout << fixed;
-        for (int p = 0; p < count; p++) {
-            cout << p + 1 << "순위) " << "주소: " << houses[p].roadNameAddress << ", 월세+관리비: " << setprecision(0)
-                 << houses[p].monthly << "원" << ", 보증금:" << houses[p].deposit << "원" << ", 거리: " << setprecision(0)
-                 << houses[p].distance << "m" << ", 평수 : " << setprecision(2) << houses[p].size << "평" << endl;
-            cout << "url : " << houses[p].url << endl;
+            cout << "-----------------삽입 정렬--------------------\n";
+            auto insert_start_time = chrono::high_resolution_clock::now();
+            insertionSort(insertHouses, data_num);
+            auto insert_end_time = chrono::high_resolution_clock::now();
+            auto insert_duration = chrono::duration_cast<chrono::microseconds>(insert_end_time - insert_start_time);
+            insert_time = insert_duration.count();
+            cout << fixed;
+            for (int p = 0; p < count; p++) {
+                cout << p + 1 << "순위) " << "주소: " << houses[p].roadNameAddress << ", 월세+관리비: " << setprecision(0)
+                     << houses[p].monthly << "원" << ", 보증금:" << houses[p].deposit << "원" << ", 거리: " << setprecision(0)
+                     << houses[p].distance << "m" << ", 평수 : " << setprecision(2) << houses[p].size << "평" << endl;
+                cout << "url : " << houses[p].url << endl;
+            }
+
+        } else {
+            //quicksort 및 실행 시간 계산
+            cout << "-----------------quicksort정렬--------------------\n";
+            auto quick_start_time = chrono::high_resolution_clock::now();
+            quicksort(houses, 0, data_num - 1);
+            auto quick_end_time = chrono::high_resolution_clock::now();
+            auto quick_duration = chrono::duration_cast<chrono::microseconds>(quick_end_time - quick_start_time);
+            quick_time = quick_duration.count();
+
+            cout << fixed;
+            for (int p = 0; p < count; p++) {
+                cout << p + 1 << "순위) " << "주소: " << houses[p].roadNameAddress << ", 월세+관리비: " << setprecision(0)
+                     << houses[p].monthly << "원" << ", 보증금:" << houses[p].deposit << "원" << ", 거리: " << setprecision(0)
+                     << houses[p].distance << "m" << ", 평수 : " << setprecision(2) << houses[p].size << "평" << endl;
+                cout << "url : " << houses[p].url << endl;
+            }
         }
-        for(int q = 1; q <= 20; q++ ){
-            cout << insertHouses[q].totalScore<<endl;
-        }
-//        }
-//        else {
-//            //quicksort 및 실행 시간 계산
-//            cout << "-----------------quicksort정렬--------------------\n";
-//            auto quick_start_time = chrono::high_resolution_clock::now();
-//            quicksort(houses, 0, data_num-1);
-//            auto quick_end_time = chrono::high_resolution_clock::now();
-//            auto quick_duration = chrono::duration_cast<chrono::microseconds>(quick_end_time - quick_start_time);
-//            quick_time = quick_duration.count();
-//
-//            cout << fixed;
-//            for (int p = 0; p < count; p++) {
-//                cout << p + 1 << "순위) " << "주소: " << houses[p].roadNameAddress << ", 월세+관리비: " << setprecision(0) << houses[p].monthly << "원" << ", 보증금:" << houses[p].deposit << "원" << ", 거리: " << setprecision(0) << houses[p].distance << "m" << ", 평수 : " << setprecision(2) << houses[p].size << "평" << endl;
-//                cout << "url : " << houses[p].url << endl;
-//            }
 
 
 
-    // 비교연산 및 이동연산 횟수 출력
+            // 비교연산 및 이동연산 횟수 출력
 //    cout << endl;
-//    cout << "-----QuickSort-----" << endl;
-//    cout << "비교연산 횟수: " << quickCompareCount() << ", 이동연산 횟수: " << quickMoveCount() << endl;
-    //cout << "-----PanCakeSort-----" << endl;
-    //cout << "비교연산 횟수: " << pancakeCompareCount() << ", 이동연산 횟수: " << pancakeMoveCount() << endl;
-    //cout << "-----ShellSort-----" << endl;
-    //cout << "비교연산 횟수: " << shellCompareCount() << ", 이동연산 횟수: " << shellMoveCount() << endl;
-    cout << "-----InsertionSort-----" << endl;
-    cout << "비교연산 횟수: " << insertionCompareCount() << ", 이동연산 횟수: " << insertionMoveCount() << endl;
+            cout << "-----QuickSort-----" << endl;
+            cout << "비교연산 횟수: " << quickCompareCount() << ", 이동연산 횟수: " << quickMoveCount() << endl;
+            cout << "-----PanCakeSort-----" << endl;
+            cout << "비교연산 횟수: " << pancakeCompareCount() << ", 이동연산 횟수: " << pancakeMoveCount() << endl;
+            cout << "-----ShellSort-----" << endl;
+            cout << "비교연산 횟수: " << shellCompareCount() << ", 이동연산 횟수: " << shellMoveCount() << endl;
+            cout << "-----InsertionSort-----" << endl;
+            cout << "비교연산 횟수: " << insertionCompareCount() << ", 이동연산 횟수: " << insertionMoveCount() << endl;
 
-    // 실행 시간 출력
-    cout << endl;
-    cout << "-----정렬 별 실제 실행 시간 출력-----" << endl;
-    cout << "QuickSort 실행 시간 : " << quick_time << "microseconds" << endl;
-    //cout << "PancakeSort 실행 시간 : " << pan_duration.count() << "microseconds" << endl;
-    //cout << "ShellSort 실행 시간 : " << shell_duration.count() << "microseconds" << endl;
-    cout << "InsertionSort 실행 시간 : " << insert_time << "microseconds" << endl;
+            // 실행 시간 출력
+            cout << endl;
+            cout << "-----정렬 별 실제 실행 시간 출력-----" << endl;
+            cout << "QuickSort 실행 시간 : " << quick_time << "microseconds" << endl;
+            //cout << "PancakeSort 실행 시간 : " << pan_duration.count() << "microseconds" << endl;
+            //cout << "ShellSort 실행 시간 : " << shell_duration.count() << "microseconds" << endl;
+            cout << "InsertionSort 실행 시간 : " << insert_time << "microseconds" << endl;
     } else {
-        cout << "파일이 열리지 않았어요!";
+            cout << "파일이 열리지 않았어요!";
     }
 }
+
