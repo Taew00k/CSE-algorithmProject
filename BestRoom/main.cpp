@@ -16,33 +16,36 @@ using namespace std;
 
 int main() {
     string line;
-    ifstream file("C:\\Clion\\dongguk\\BestRoom\\houseInfo.txt"); //houseInfo ÆÄÀÏ ¿­±â, ¾øÀ¸¸é »ı¼º
+    ifstream file("BestRoom/houseInfo.txt"); //houseInfo íŒŒì¼ ì—´ê¸°, ì—†ìœ¼ë©´ ìƒì„±
     vector<House> houseList;
-    // Ãâ·ÂÀÇ ¼ö
+    int data_num = 220; // ì‚¬ìš©ìê°€ ì„¤ì •í•œ ë²”ìœ„ ì£¼ë³€ì— ì¡´ì¬í•˜ëŠ” ìì·¨ë°©ì˜ ê°œìˆ˜
+    auto insert_time = 0;
+    auto quick_time = 0;
+    // ì¶œë ¥ì˜ ìˆ˜
     int count;
-    // Áß¿äµµ
+    // ì¤‘ìš”ë„
     int monthlyWeight;
     int depositWeight;
     int distanceWeight;
     int sizeWeight;
     cout << "--------------------------------------------------------------------------------------------\n";
-    cout << "¿øÇÏ½Ã´Â Ãâ·ÂÀÇ ¼ö¸¸Å­ ÀÔ·Â ÈÄ (¿ù¼¼+°ü¸®ºñ, º¸Áõ±İ, °Å¸®, Æò¼ö) 100Á¡À» ºĞ¹èÇÏ¿© Áß¿äµµ¸¦ Ç¥ÇöÇØÁÖ¼¼¿ä.\n";
-    cout << "ex) Ãâ·ÂÀÇ ¼ö: 5, ¿ù¼¼+°ü¸®ºñ: 60, º¸Áõ±İ: 20, °Å¸®:10, Æò¼ö:10\n";
+    cout << "ì›í•˜ì‹œëŠ” ì¶œë ¥ì˜ ìˆ˜ë§Œí¼ ì…ë ¥ í›„ (ì›”ì„¸+ê´€ë¦¬ë¹„, ë³´ì¦ê¸ˆ, ê±°ë¦¬, í‰ìˆ˜) 100ì ì„ ë¶„ë°°í•˜ì—¬ ì¤‘ìš”ë„ë¥¼ í‘œí˜„í•´ì£¼ì„¸ìš”.\n";
+    cout << "ex) ì¶œë ¥ì˜ ìˆ˜: 5, ì›”ì„¸+ê´€ë¦¬ë¹„: 60, ë³´ì¦ê¸ˆ: 20, ê±°ë¦¬:10, í‰ìˆ˜:10\n";
     cout << "--------------------------------------------------------------------------------------------\n";
-    cout << "Ãâ·ÂÀÇ ¼ö :";
+    cout << "ì¶œë ¥ì˜ ìˆ˜ :";
     cin >> count;
     do {
-        cout << "¿ù¼¼ + °ü¸®ºñ :";
+        cout << "ì›”ì„¸ + ê´€ë¦¬ë¹„ :";
         cin >> monthlyWeight;
-        cout << "º¸Áõ±İ :";
+        cout << "ë³´ì¦ê¸ˆ :";
         cin >> depositWeight;
-        cout << "°Å¸® :";
+        cout << "ê±°ë¦¬ :";
         cin >> distanceWeight;
-        cout << "Æò¼ö :";
+        cout << "í‰ìˆ˜ :";
         cin >> sizeWeight;
 
         if (monthlyWeight + depositWeight + distanceWeight + sizeWeight != 100) {
-            cout << "Áß¿äµµÀÇ ÇÕÀÌ 100ÀÌ ¾Æ´Õ´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.\n";
+            cout << "ì¤‘ìš”ë„ì˜ í•©ì´ 100ì´ ì•„ë‹™ë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.\n";
         }
     } while (monthlyWeight + depositWeight + distanceWeight + sizeWeight != 100);
 
@@ -59,12 +62,11 @@ int main() {
             string st = "";
 
             while (getline(ss, field, ',')) {
-                //¿©±â¿¡ ÀĞ¾î¿Â °ªµéÀÇ µ¥ÀÌÅÍ Å¸ÀÔÀÌ ´Ù´Ş¶ó.
+                //ì—¬ê¸°ì— ì½ì–´ì˜¨ ê°’ë“¤ì˜ ë°ì´í„° íƒ€ì…ì´ ë‹¤ë‹¬ë¼.
                 if (i == 0 || i == 5) {
                     tempS.push_back(field);
                     s++;
-                }
-                else {
+                } else {
                     tempD.push_back(stod(field));
                     d++;
                 }
@@ -84,10 +86,10 @@ int main() {
             houseList.push_back(h);
         }
         vector<House> houses = calculateScores(houseList, monthlyWeight, depositWeight, distanceWeight, sizeWeight);
-        cout << "-----------------ÃßÃµ ÀÚÃë¹æ ¼øÀ§º° Ãâ·Â--------------------\n";
+        cout << "-----------------ì¶”ì²œ ìì·¨ë°© ìˆœìœ„ë³„ ì¶œë ¥--------------------\n";
 /*
-        //quicksort ¹× ½ÇÇà ½Ã°£ °è»ê
-        cout << "-----------------quicksortÁ¤·Ä--------------------\n";
+        //quicksort ë° ì‹¤í–‰ ì‹œê°„ ê³„ì‚°
+        cout << "-----------------quicksortì •ë ¬--------------------\n";
         auto quick_start_time = chrono::high_resolution_clock::now();
         quicksort(houses, 0, 99);
         auto quick_end_time = chrono::high_resolution_clock::now();
@@ -95,66 +97,94 @@ int main() {
 
         cout << fixed;
         for (int p = 0; p < count; p++) {
-        cout << p + 1 << "¼øÀ§) " << "ÁÖ¼Ò: " << houses[p].roadNameAddress << ", ¿ù¼¼+°ü¸®ºñ: " << setprecision(0) << houses[p].monthly << "¿ø" << ", º¸Áõ±İ:" << houses[p].deposit << "¿ø" << ", °Å¸®: " << setprecision(0) << houses[p].distance << "m" << ", Æò¼ö : " << setprecision(2) << houses[p].size << "Æò" << endl;
+        cout << p + 1 << "ìˆœìœ„) " << "ì£¼ì†Œ: " << houses[p].roadNameAddress << ", ì›”ì„¸+ê´€ë¦¬ë¹„: " << setprecision(0) << houses[p].monthly << "ì›" << ", ë³´ì¦ê¸ˆ:" << houses[p].deposit << "ì›" << ", ê±°ë¦¬: " << setprecision(0) << houses[p].distance << "m" << ", í‰ìˆ˜ : " << setprecision(2) << houses[p].size << "í‰" << endl;
         cout << "url : " << houses[p].url << endl;
         }
 
-        //shellSort ¹× ½ÇÇà ½Ã°£ °è»ê
-        cout << "-----------------shellsortÁ¤·Ä--------------------\n";
+        //shellSort ë° ì‹¤í–‰ ì‹œê°„ ê³„ì‚°
+        cout << "-----------------shellsortì •ë ¬--------------------\n";
         auto shell_start_time = chrono::high_resolution_clock::now();
-        shellSort(houses, 99); // houses´Â ÂüÁ¶·Î Àü´ŞµË´Ï´Ù.
+        shellSort(houses, 99); // housesëŠ” ì°¸ì¡°ë¡œ ì „ë‹¬ë©ë‹ˆë‹¤.
         auto shell_end_time = chrono::high_resolution_clock::now();
         auto shell_duration = chrono::duration_cast<chrono::microseconds>(shell_end_time - shell_start_time);
         cout << fixed;
         for (int p = 0; p < count; p++) {
-        cout << p + 1 << "¼øÀ§) " << "ÁÖ¼Ò: " << houses[p].roadNameAddress << ", ¿ù¼¼+°ü¸®ºñ: " << setprecision(0) << houses[p].monthly << "¿ø" << ", º¸Áõ±İ:" << houses[p].deposit << "¿ø" << ", °Å¸®: " << setprecision(0) << houses[p].distance << "m" << ", Æò¼ö : " << setprecision(2) << houses[p].size << "Æò" << endl;
+        cout << p + 1 << "ìˆœìœ„) " << "ì£¼ì†Œ: " << houses[p].roadNameAddress << ", ì›”ì„¸+ê´€ë¦¬ë¹„: " << setprecision(0) << houses[p].monthly << "ì›" << ", ë³´ì¦ê¸ˆ:" << houses[p].deposit << "ì›" << ", ê±°ë¦¬: " << setprecision(0) << houses[p].distance << "m" << ", í‰ìˆ˜ : " << setprecision(2) << houses[p].size << "í‰" << endl;
         cout << "url : " << houses[p].url << endl;
         }
 
-        //pancake ¹× ½ÇÇà ½Ã°£ °è»ê
-        cout << "-----------------pancakeÁ¤·Ä--------------------\n";
+        //pancake ë° ì‹¤í–‰ ì‹œê°„ ê³„ì‚°
+        cout << "-----------------pancakeì •ë ¬--------------------\n";
         auto pan_start_time = chrono::high_resolution_clock::now();
         vector<House> pancakeHouses = pancakeSort(houses);
         auto pan_end_time = chrono::high_resolution_clock::now();
         auto pan_duration = chrono::duration_cast<chrono::microseconds>(pan_end_time - pan_start_time);
         cout << fixed;
         for (int p = 0; p < count; p++) {
-            cout << p + 1 << "¼øÀ§) " << "ÁÖ¼Ò: " << pancakeHouses[p].roadNameAddress << ", ¿ù¼¼+°ü¸®ºñ: " << setprecision(0) << pancakeHouses[p].monthly << "¿ø" << ", º¸Áõ±İ:" << pancakeHouses[p].deposit << "¿ø" << ", °Å¸®: " << setprecision(0) << pancakeHouses[p].distance << "m" << ", Æò¼ö : " << setprecision(2) << pancakeHouses[p].size << "Æò" << endl;
+            cout << p + 1 << "ìˆœìœ„) " << "ì£¼ì†Œ: " << pancakeHouses[p].roadNameAddress << ", ì›”ì„¸+ê´€ë¦¬ë¹„: " << setprecision(0) << pancakeHouses[p].monthly << "ì›" << ", ë³´ì¦ê¸ˆ:" << pancakeHouses[p].deposit << "ì›" << ", ê±°ë¦¬: " << setprecision(0) << pancakeHouses[p].distance << "m" << ", í‰ìˆ˜ : " << setprecision(2) << pancakeHouses[p].size << "í‰" << endl;
             cout << "url : " << pancakeHouses[p].url << endl;
         }
 */
-        // Insertion ¹× ½ÇÇà ½Ã°£ °è»ê
-        cout << "-----------------»ğÀÔ Á¤·Ä--------------------\n";
+
+
+//        if(data_num <= 200) {
+        // Insertion ë° ì‹¤í–‰ ì‹œê°„ ê³„ì‚°
+        //ì•ì— ë”ë¯¸ë°ì´í„° ë„£ì–´ì•¼ í•´ì„œ ì–˜ë§Œ ë‹¤ë¥¸ houses ì‚¬ìš©
+        vector<House> insertHouses = houses;
+        House dummy;
+        dummy.totalScore = INT16_MIN; // ìˆ˜ì •ëœ ë¶€ë¶„: totalScoreì— ê°’ì„ í• ë‹¹
+        insertHouses.insert(insertHouses.begin(), dummy);
+
+        cout << "-----------------ì‚½ì… ì •ë ¬--------------------\n";
         auto insert_start_time = chrono::high_resolution_clock::now();
-        insertionSort(houses, 99);
+        insertionSort(insertHouses, data_num);
         auto insert_end_time = chrono::high_resolution_clock::now();
         auto insert_duration = chrono::duration_cast<chrono::microseconds>(insert_end_time - insert_start_time);
+        insert_time = insert_duration.count();
         cout << fixed;
         for (int p = 0; p < count; p++) {
-            cout << p + 1 << "¼øÀ§) " << "ÁÖ¼Ò: " << houses[p].roadNameAddress << ", ¿ù¼¼+°ü¸®ºñ: " << setprecision(0) << houses[p].monthly << "¿ø" << ", º¸Áõ±İ:" << houses[p].deposit << "¿ø" << ", °Å¸®: " << setprecision(0) << houses[p].distance << "m" << ", Æò¼ö : " << setprecision(2) << houses[p].size << "Æò" << endl;
+            cout << p + 1 << "ìˆœìœ„) " << "ì£¼ì†Œ: " << houses[p].roadNameAddress << ", ì›”ì„¸+ê´€ë¦¬ë¹„: " << setprecision(0)
+                 << houses[p].monthly << "ì›" << ", ë³´ì¦ê¸ˆ:" << houses[p].deposit << "ì›" << ", ê±°ë¦¬: " << setprecision(0)
+                 << houses[p].distance << "m" << ", í‰ìˆ˜ : " << setprecision(2) << houses[p].size << "í‰" << endl;
             cout << "url : " << houses[p].url << endl;
         }
+//        }
+//        else {
+//            //quicksort ë° ì‹¤í–‰ ì‹œê°„ ê³„ì‚°
+//            cout << "-----------------quicksortì •ë ¬--------------------\n";
+//            auto quick_start_time = chrono::high_resolution_clock::now();
+//            quicksort(houses, 0, data_num-1);
+//            auto quick_end_time = chrono::high_resolution_clock::now();
+//            auto quick_duration = chrono::duration_cast<chrono::microseconds>(quick_end_time - quick_start_time);
+//            quick_time = quick_duration.count();
+//
+//            cout << fixed;
+//            for (int p = 0; p < count; p++) {
+//                cout << p + 1 << "ìˆœìœ„) " << "ì£¼ì†Œ: " << houses[p].roadNameAddress << ", ì›”ì„¸+ê´€ë¦¬ë¹„: " << setprecision(0) << houses[p].monthly << "ì›" << ", ë³´ì¦ê¸ˆ:" << houses[p].deposit << "ì›" << ", ê±°ë¦¬: " << setprecision(0) << houses[p].distance << "m" << ", í‰ìˆ˜ : " << setprecision(2) << houses[p].size << "í‰" << endl;
+//                cout << "url : " << houses[p].url << endl;
+//            }
 
-        // ºñ±³¿¬»ê ¹× ÀÌµ¿¿¬»ê È½¼ö Ãâ·Â
-        cout << endl;
-        //cout << "-----QuickSort-----" << endl;
-        //cout << "ºñ±³¿¬»ê È½¼ö: " << quickCompareCount() << ", ÀÌµ¿¿¬»ê È½¼ö: " << quickMoveCount() << endl;
-        //cout << "-----PanCakeSort-----" << endl;
-        //cout << "ºñ±³¿¬»ê È½¼ö: " << pancakeCompareCount() << ", ÀÌµ¿¿¬»ê È½¼ö: " << pancakeMoveCount() << endl;
-        //cout << "-----ShellSort-----" << endl;
-        //cout << "ºñ±³¿¬»ê È½¼ö: " << shellCompareCount() << ", ÀÌµ¿¿¬»ê È½¼ö: " << shellMoveCount() << endl;
-        cout << "-----InsertionSort-----" << endl;
-        cout << "ºñ±³¿¬»ê È½¼ö: " << insertionCompareCount() << ", ÀÌµ¿¿¬»ê È½¼ö: " << insertionMoveCount() << endl;
 
-        // ½ÇÇà ½Ã°£ Ãâ·Â
-        cout << endl;
-        cout << "-----Á¤·Ä º° ½ÇÁ¦ ½ÇÇà ½Ã°£ Ãâ·Â-----" << endl;
-        //cout << "QuickSort ½ÇÇà ½Ã°£ : " << quick_duration.count() << "microseconds" << endl;
-        //cout << "PancakeSort ½ÇÇà ½Ã°£ : " << pan_duration.count() << "microseconds" << endl;
-        //cout << "ShellSort ½ÇÇà ½Ã°£ : " << shell_duration.count() << "microseconds" << endl;
-        cout << "InsertionSort ½ÇÇà ½Ã°£ : " << insert_duration.count() << "microseconds" << endl;
-    }
-    else {
-        cout << "ÆÄÀÏÀÌ ¿­¸®Áö ¾Ê¾Ò¾î¿ä!";
+
+    // ë¹„êµì—°ì‚° ë° ì´ë™ì—°ì‚° íšŸìˆ˜ ì¶œë ¥
+//    cout << endl;
+//    cout << "-----QuickSort-----" << endl;
+//    cout << "ë¹„êµì—°ì‚° íšŸìˆ˜: " << quickCompareCount() << ", ì´ë™ì—°ì‚° íšŸìˆ˜: " << quickMoveCount() << endl;
+    //cout << "-----PanCakeSort-----" << endl;
+    //cout << "ë¹„êµì—°ì‚° íšŸìˆ˜: " << pancakeCompareCount() << ", ì´ë™ì—°ì‚° íšŸìˆ˜: " << pancakeMoveCount() << endl;
+    //cout << "-----ShellSort-----" << endl;
+    //cout << "ë¹„êµì—°ì‚° íšŸìˆ˜: " << shellCompareCount() << ", ì´ë™ì—°ì‚° íšŸìˆ˜: " << shellMoveCount() << endl;
+    cout << "-----InsertionSort-----" << endl;
+    cout << "ë¹„êµì—°ì‚° íšŸìˆ˜: " << insertionCompareCount() << ", ì´ë™ì—°ì‚° íšŸìˆ˜: " << insertionMoveCount() << endl;
+
+    // ì‹¤í–‰ ì‹œê°„ ì¶œë ¥
+    cout << endl;
+    cout << "-----ì •ë ¬ ë³„ ì‹¤ì œ ì‹¤í–‰ ì‹œê°„ ì¶œë ¥-----" << endl;
+    cout << "QuickSort ì‹¤í–‰ ì‹œê°„ : " << quick_time << "microseconds" << endl;
+    //cout << "PancakeSort ì‹¤í–‰ ì‹œê°„ : " << pan_duration.count() << "microseconds" << endl;
+    //cout << "ShellSort ì‹¤í–‰ ì‹œê°„ : " << shell_duration.count() << "microseconds" << endl;
+    cout << "InsertionSort ì‹¤í–‰ ì‹œê°„ : " << insert_time << "microseconds" << endl;
+    } else {
+        cout << "íŒŒì¼ì´ ì—´ë¦¬ì§€ ì•Šì•˜ì–´ìš”!";
     }
 }

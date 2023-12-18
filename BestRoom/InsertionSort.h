@@ -7,7 +7,7 @@
 extern int compare_cnt_insertion;
 extern int datamove_cnt_insertion;
 
-void insertionSort(vector<House>& a, int n);
+void insertionSort(vector<House>& arr, int n);
 int insertionCompareCount();
 int insertionMoveCount();
 
